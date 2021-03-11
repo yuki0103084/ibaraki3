@@ -1,0 +1,50 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        記事一覧
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @articles.each do |article| %>
+        <div class="column is-3">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <%= link_to article_path(article) do %>
+                <%= attachment_image_tag article, :image, fallback: "no-image.png" %>
+                <% end %>
+              </figure>
+            </div>
+            <div class="card-content">
+            <p class="title is-6"><%= article.title %></p>
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-32x32">
+                    <%= link_to user_path(article.user.id) do %>
+                    <%= attachment_image_tag article.user, :profile_image, fallback: "no-image.png", class: "profile_image" %>
+                    <% end %>
+                  </figure>
+                </div>
+               
+                  <strong><%= link_to article.user.username, user_path(article.user.id) %></strong></div>
+              
+                <tr id="article_<%= article.id %>">
+                <%= render 'article', article: article %>    
+                </tr>
+
+               <div class="content">
+                <time><small><%= article.updated_at.strftime("%Y-%m-%d %H:%M") %></small></time>更新
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

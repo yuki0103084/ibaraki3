@@ -1,0 +1,116 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        記事詳細
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-7">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+                  <%= attachment_image_tag @article, :image, fallback: "no-image.png" %>
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4"><%= @article.title %></p>
+              </div>
+            </div>
+            <div class="content">
+              <table class="table is-narrow">
+                <tr>
+                  <td><%= simple_format @article.body %></td>
+                </tr>
+              </table>
+              <% if @article.user.id == current_user.id %>
+                <%= link_to "編集", edit_article_path(@article), class: "button is-success" %>
+              <% end %>
+
+              
+            </div>
+          </div>
+        </div>
+      </div>        
+
+      <div class="column is-4">
+        <article class="panel is-link">
+          <p class="panel-heading">
+              <%= @article.user.username %>
+          </p>
+          <div class="panel-block">
+            <p class="control">
+              <%= @article.user.profile %>
+            </p>
+          </div>
+          <%= link_to user_path(@article.user), class: "panel-block" do %>
+            <span class="panel-icon">
+              <i class="fas fa-user" aria-hidden="true"></i>
+            </span>
+            <%= @article.user.username %> さんのページへ
+          <% end %>
+        </article>
+     
+    <article class="media">
+      <figure class="media-left">
+        <% @comments.each do |comment| %>
+   <p class="image is-48x48">
+     <%= link_to user_path(@article.user.id) do %>
+     <%= attachment_image_tag comment.user, :profile_image, fallback: "no-image.png", class: "profile_image" %>
+   <% end %>
+   </p>
+   </figure>
+   
+
+      <div class="media-content">
+        <div class="content">
+          <p>
+    <strong><%= link_to comment.user.username, "/users/#{comment.user_id}" %></strong><br>
+    <%= comment.text %><br>
+    <time><small><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></small></time>
+    </p>
+     <% if current_user == comment.user %>
+    <p><%=link_to "コメント削除", article_comment_path(comment.article.id, comment.id), method: :delete %></p>
+    <% end %>
+    </article>
+    <article class="media">
+   <% end %>
+   
+    
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-48x48">
+      <%= link_to user_path(@article.user.id) do %>
+        <%= attachment_image_tag current_user, :profile_image, fallback: "no-image.png", class: "profile_image" %>
+      <% end %>
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="field">
+      <p class="control">
+        <% if current_user %>
+      <%= form_with(model: [@article, @comment], local: true) do |form| %>
+        <%= form.text_area :text, placeholder: "コメントする", cols: "47", rows: "8" %><br>
+        <%= form.submit "送信", class: "button is-primary" %>
+      <% end %>
+    <% else %>
+      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+    <% end %>
+      </p>
+    </div>  
+    </div>
+  </div>
+      </div>
+    </div>
+    </article>
+</section>
+      
+
+

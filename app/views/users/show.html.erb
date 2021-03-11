@@ -1,0 +1,94 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        マイページ
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="columns is-centered">
+          <div class="column is-4">
+         
+              <%= attachment_image_tag @user, :profile_image, fallback: "no-image.png" %>
+         
+          </div>
+          <div class="column is-8">
+            <table class="table is-fullwidth">
+              <tr>
+                <td class="is-size-4">
+                  <strong><%= @user.username %></strong>
+                </td>
+                <% if @user.id == current_user.id %>
+                
+                <td>
+                    <%= link_to "編集", edit_user_path(@user), class: "button is-primary" %>
+                </td>
+                <% end %>
+              </tr>
+            </table>
+            <table class="table is-fullwidth">
+              <tr>
+                <td>
+                  <%= @user.profile %>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @user.articles.each do |article| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                  <%= attachment_image_tag article, :image, fallback: "no-image.png" %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <div class="media-content">
+                  <%= link_to article_path(article), class: "panel-block" do %>
+                    <span class="panel-icon">
+                      <i class="fas fa-book" aria-hidden="true"></i>
+                    </span>
+                    この記事を見る
+                  <% end %>
+                  <% if @user.id == current_user.id %>
+                    <%= link_to edit_article_path(article), class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-edit"></i>
+                      </span>
+                      この記事を編集する
+                    <% end %>
+                    <%= link_to article_path(article), method: :delete, data: {confirm: "削除しますか？"}, class: "panel-block" do %>
+                      <span class="panel-icon">
+                        <i class="fas fa-trash"></i>
+                      </span>
+                      この記事を削除する
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="content">
+                <time><%= article.updated_at.strftime("%Y-%m-%d %H:%M") %></time>更新
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
