@@ -2,20 +2,11 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        記事一覧
+        カテゴリー： <%= @category.name %>
       </h1>
     </div>
   </div>
 </section>
-
-<div class="container">
-  <h2 class="title">
-    <%= search_form_for @q, url: article_category_path do |f| %>
-    <%= f.collection_select :category_id_eq, Category.where.not(id: 0), :id, :name, include_blank: "カテゴリー検索" %>
-    <%= f.submit '検索' %>
-<% end %>
-  </h2>
-</div>
 
 <section class="section">
   <div class="container">
@@ -30,9 +21,8 @@
                 <% end %>
               </figure>
             </div>
-            <div class="card-content">
-              <p class="title is-6"><%= link_to article.title, article_path(article) %></p>
-           
+          <div class="card-content">
+            <p class="title is-6"><%= link_to article.title, article_path(article) %></p>
               <div class="media">
                 <div class="media-left">
                   <figure class="image is-32x32">
@@ -42,11 +32,11 @@
                   </figure>
                 </div>
                   <strong><%= link_to article.user.username, user_path(article.user.id) %></strong></div>
-                <span id="article_<%= article.id %>">
-                  <%= render 'article', article: article %>    
-                </span>
+                  <span id="article_<%= article.id %>">
+                    <%= render 'article', article: article %>    
+                  </span>
              
-                <div class="content">
+               <div class="content">
                 <time><small><%= article.updated_at.strftime("%Y-%m-%d %H:%M") %></small></time>更新
               </div>
             </div>
@@ -56,5 +46,3 @@
     </div>
   </div>
 </section>
-
-

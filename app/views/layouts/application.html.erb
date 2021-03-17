@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ibaraki3</title>
+    <title>Ibaraki</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
@@ -43,44 +43,34 @@
       </div>
        <div class="navbar-item">
             <%= link_to "新規投稿", new_article_path, class: "navbar-item button is-warning is-light" %>
-          </div>
-       
-        <div class="navbar-item">
-         
-                  <%= link_to "マイページ", user_path(current_user), class: "button is-warning is-light" %>
-                </div>
-            <div class="navbar-item">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "button is-warning is-light" %>
-         </div>
-         </div>
-        </div>
        </div>
-      </div> 
-      </div>      
+       
+        <div class="navbar-item">  
+            <%= link_to "マイページ", user_path(current_user), class: "button is-warning is-light" %>
+        </div>
+        <div class="navbar-item">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "button is-warning is-light" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+</div>      
     <% else %>
      <div id="navbarExampleTransparentExample" class="navbar-menu">
-     <div class="navbar-end">
-     <div class="navbar-item">
-        <%= link_to "記事一覧", articles_path, class: "navbar-item button is-warning is-light" %>
-      </div>
-      </div>
       </div>
       <div class="navbar-end">
-       <div class="navbar-item">
-         
+        <div class="navbar-item"> 
           <%= link_to "ログイン", new_user_session_path, class: "button is-warning is-light" %>
-            </div>
-     </div> 
-         <div class="navbar-end">
-       <div class="navbar-item">
-          <%= link_to "新規登録", new_user_registration_path, class: "button is-warning is-light" %>
-         
-       
+        </div>
+      </div> 
+      <div class="navbar-end">
+      <div class="navbar-item">
+          <%= link_to "新規登録", new_user_registration_path, class: "button is-warning is-light" %> 
       </div>
      </div>     
     <% end %>
-
-    </nav>
-    <%= yield %>
-  </body>
+   </nav>
+  <%= yield %>
+ </body>
 </html>

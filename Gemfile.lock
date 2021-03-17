@@ -168,6 +168,10 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
     rake (13.0.3)
+    ransack (2.4.2)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
+      i18n
     refile-mini_magick (0.2.0)
       mini_magick (~> 4.0)
       refile (~> 0.5)
@@ -257,6 +261,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.5)
+  ransack
   refile!
   refile-mini_magick
   sass-rails (>= 6)

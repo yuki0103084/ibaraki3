@@ -15,26 +15,30 @@
         <div class="card">
           <div class="card-image">
             <figure class="image is-4by3">
-                  <%= attachment_image_tag @article, :image, fallback: "no-image.png" %>
+              <%= attachment_image_tag @article, :image, fallback: "no-image.png" %>
             </figure>
           </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4"><%= @article.title %></p>
-              </div>
-            </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4"><%= @article.title %></p>     
+                <strong>カテゴリー：<%= @article.category.name %></strong>
+            </div>  
+          </div>
             <div class="content">
               <table class="table is-narrow">
                 <tr>
                   <td><%= simple_format @article.body %></td>
                 </tr>
               </table>
-              <% if @article.user.id == current_user.id %>
+                <% if @article.user.id == current_user.id %>
                 <%= link_to "編集", edit_article_path(@article), class: "button is-success" %>
-              <% end %>
-
-              
+                <% end %>
+            <div>
+              <span id="article_<%= @article.id %>">
+                <%= render 'article', article: @article %>    
+              </span>
+            </div>  
             </div>
           </div>
         </div>
@@ -43,47 +47,45 @@
       <div class="column is-4">
         <article class="panel is-link">
           <p class="panel-heading">
-              <%= @article.user.username %>
+             <%= @article.user.username %>
           </p>
-          <div class="panel-block">
-            <p class="control">
-              <%= @article.user.profile %>
-            </p>
-          </div>
-          <%= link_to user_path(@article.user), class: "panel-block" do %>
-            <span class="panel-icon">
-              <i class="fas fa-user" aria-hidden="true"></i>
-            </span>
-            <%= @article.user.username %> さんのページへ
-          <% end %>
+      <div class="panel-block">
+          <p class="control">
+             <%= @article.user.profile %>
+          </p>
+      </div>
+             <%= link_to user_path(@article.user), class: "panel-block" do %>
+          <span class="panel-icon">
+          <i class="fas fa-user" aria-hidden="true"></i>
+          </span>
+             <%= @article.user.username %> さんのページへ
+             <% end %>
         </article>
      
     <article class="media">
       <figure class="media-left">
         <% @comments.each do |comment| %>
-   <p class="image is-48x48">
-     <%= link_to user_path(@article.user.id) do %>
-     <%= attachment_image_tag comment.user, :profile_image, fallback: "no-image.png", class: "profile_image" %>
-   <% end %>
-   </p>
-   </figure>
+         <p class="image is-48x48">
+        <%= link_to user_path(@article.user.id) do %>
+        <%= attachment_image_tag comment.user, :profile_image, fallback: "no-image.png", class: "profile_image" %>
+        <% end %>
+         </p>
+      </figure>
    
-
       <div class="media-content">
         <div class="content">
           <p>
-    <strong><%= link_to comment.user.username, "/users/#{comment.user_id}" %></strong><br>
-    <%= comment.text %><br>
-    <time><small><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></small></time>
-    </p>
-     <% if current_user == comment.user %>
-    <p><%=link_to "コメント削除", article_comment_path(comment.article.id, comment.id), method: :delete %></p>
-    <% end %>
+            <strong><%= link_to comment.user.username, "/users/#{comment.user_id}" %></strong><br>
+            <%= comment.text %><br>
+            <time><small><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></small></time>
+          </p>
+            <% if current_user == comment.user %>
+          <p><%=link_to "コメント削除", article_comment_path(comment.article.id, comment.id), method: :delete %></p>
+            <% end %>
     </article>
     <article class="media">
-   <% end %>
-   
-    
+            <% end %>
+      
 <article class="media">
   <figure class="media-left">
     <p class="image is-48x48">
@@ -104,12 +106,12 @@
       <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
     <% end %>
       </p>
-    </div>  
+     </div>  
     </div>
+   </div>
   </div>
-      </div>
-    </div>
-    </article>
+ </div>
+</article>
 </section>
       
 

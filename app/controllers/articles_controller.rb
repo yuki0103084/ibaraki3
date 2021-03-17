@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  before_action :search_category_article, only: [:index, :category, :hashtag, :search]
   def index
     @articles = Article.all
   end
@@ -45,9 +46,20 @@ class ArticlesController < ApplicationController
     article.destroy
     redirect_to articles_path
   end
+  
+  def category
+    @articles = @q.result
+    category_id = params[:q][:category_id_eq]
+    @category = Category.find_by(id: category_id)
+  end
 
   private
   def article_params
-    params.require(:article).permit(:title, :body, :image)
+    params.require(:article).permit(:title, :body, :image, :category_id)
   end
+
+  def search_category_article
+    @q = Article.ransack(params[:q])
+  end
+
 end

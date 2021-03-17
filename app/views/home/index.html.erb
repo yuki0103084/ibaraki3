@@ -62,6 +62,7 @@
             <div class="buttons">
               <button class="button is-primary"><%= link_to "ログイン", new_user_session_path %></button>
               <button class="button is-primary"><%= link_to "新規登録", new_user_registration_path %></button>
+              <button class="button is-warning"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %></button>
             </div>
           </div>
           <div data-aos="fade-right" class="column
@@ -74,7 +75,6 @@
             <img src="/assets/machi.png" alt="">
             </figure>
           </div>
-
         </div>
       </div>
     </div>
@@ -108,7 +108,6 @@
               市限定の子育ての制度なども共有できます
             </h2>
           </div>
-
         </div>
       </div>
     </div>
@@ -142,7 +141,6 @@
              <img src="/assets/kaimono.png" alt="">
             </figure>
           </div>
-
         </div>
       </div>
     </div>
@@ -163,5 +161,4 @@
     });
   </script>
 </body>
-
 </html>
