@@ -1,24 +1,68 @@
-# README
+# アプリの名前
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ibaraki
 
-Things you may want to cover:
+## 簡単な説明
 
-* Ruby version
+ibarakiは自分が住んでいる市の名前です。アプリとしては市の情報を共有できるアプリになります。私は小さな子供が二人おり、休日雨が降った日に近場で屋内で遊べる施設がないかインターネットで検索したのですが、隣の市の施設の情報しかヒットせず
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+## 機能
 
-* Database initialization
+- 機能1（UI/計算 etc ...）
+- 機能2
+- 機能3
+- ...
 
-* How to run the test suite
+他の機能はこちらを参照して下さい。`awesome-tool --help`.
 
-* Services (job queues, cache servers, search engines, etc.)
+## 必要要件
 
-* Deployment instructions
+- 要件
+- 要件
+- 要件
+- ...
 
-* ...
+## 使い方
+
+1. 使い方
+2. 使い方
+3. 使い方
+
+## インストール
+
+```
+$ git clone https://github.com/TomoakiTANAKA/awesome-tool
+$ cd awesome-tool
+$ sh setup.sh
+$ ~do anything~
+```
+
+## テスト
+
+1. 使い方
+2. 使い方
+3. 使い方
+
+## デプロイ
+
+1. デプロイ
+2. デプロイ
+3. デプロイ
+
+## その他
+
+その他その他その他その他
+その他その他その他その他
+その他その他その他その他
+その他その他その他その他
+
+## 作者
+
+[@TanakanoAnchan](https://twitter.com/TanakanoAnchan)
+mail to: xxxx@mail.com
+
+## ライセンス
+
+[MIT](http://TomoakiTANAKA.mit-license.org)</blockquote>
